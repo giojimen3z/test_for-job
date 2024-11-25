@@ -1,0 +1,36 @@
+# Golang specific
+/bin/
+*.exe
+*.test
+*.out
+
+# Editor settings
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+/vendor/
+
+# Log files
+*.log
+*.tmp
+
+# Build files
+*.o
+*.a
+*.so
+
+# Coverage files
+*.cover
+*.prof
+
+# Temp files
+*.env
+*.iml
