@@ -1,0 +1,24 @@
+meta {
+  name: /conncache_scaffold
+  type: http
+  seq: 12
+}
+
+post {
+  url: http://localhost:8080/conncache_scaffold
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "connections": [
+      "db1",
+      "db2"
+    ]
+  }
+}

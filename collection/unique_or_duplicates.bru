@@ -1,0 +1,26 @@
+meta {
+  name: /unique_or_duplicates
+  type: http
+  seq: 11
+}
+
+post {
+  url: http://localhost:8080/unique_or_duplicates
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "numbers": [
+      1,
+      2,
+      2,
+      3
+    ]
+  }
+}

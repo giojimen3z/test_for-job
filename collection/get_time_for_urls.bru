@@ -1,0 +1,23 @@
+meta {
+  name: /get_time_for_urls
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/get_time_for_urls
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "urls": [
+      "https://example.com"
+    ]
+  }
+}

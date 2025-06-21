@@ -1,0 +1,15 @@
+meta {
+  name: /multiples_sum/:limit
+  type: http
+  seq: 10
+}
+
+get {
+  url: http://localhost:8080/multiples_sum/10
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}

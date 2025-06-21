@@ -1,0 +1,26 @@
+meta {
+  name: /double-server
+  type: http
+  seq: 15
+}
+
+post {
+  url: http://localhost:8080/double-server
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "numbers": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}

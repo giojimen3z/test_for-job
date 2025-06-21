@@ -1,0 +1,21 @@
+meta {
+  name: /count_characters
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/count_characters
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "text": "banana"
+  }
+}

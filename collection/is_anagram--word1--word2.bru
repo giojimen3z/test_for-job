@@ -1,0 +1,15 @@
+meta {
+  name: /is_anagram/:word1/:word2
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:8080/is_anagram/test/sett
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
