@@ -1,0 +1,29 @@
+meta {
+  name: /channel-pair-sum
+  type: http
+  seq: 18
+}
+
+post {
+  url: http://localhost:8080/channel-pair-sum
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "ascending": [
+      1,
+      2
+    ],
+    "descending": [
+      9,
+      8
+    ],
+    "target": 10
+  }
+}

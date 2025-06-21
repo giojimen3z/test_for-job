@@ -1,0 +1,30 @@
+meta {
+  name: /shortest_path
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:8080/shortest_path
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "grid": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        0
+      ]
+    ]
+  }
+}

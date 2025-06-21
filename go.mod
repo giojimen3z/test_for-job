@@ -1,8 +1,11 @@
 module test_for-job
 
-go 1.22
+go 1.24
 
-require github.com/gin-gonic/gin v1.10.0
+require (
+	github.com/andelf/go-curl v0.0.0-20250312014544-8683354c1636
+	github.com/gin-gonic/gin v1.10.0
+)
 
 require (
 	github.com/bytedance/sonic v1.11.6 // indirect

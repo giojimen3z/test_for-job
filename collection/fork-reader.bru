@@ -1,0 +1,21 @@
+meta {
+  name: /fork-reader
+  type: http
+  seq: 14
+}
+
+post {
+  url: http://localhost:8080/fork-reader
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "data": "abcdef"
+  }
+}

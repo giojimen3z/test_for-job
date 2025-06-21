@@ -1,0 +1,25 @@
+meta {
+  name: /browser-navigator
+  type: http
+  seq: 17
+}
+
+post {
+  url: http://localhost:8080/browser-navigator
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "commands": [
+      "BrowserNavigator A",
+      "hopTo B",
+      "backtrack 1"
+    ]
+  }
+}
