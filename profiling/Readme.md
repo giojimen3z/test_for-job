@@ -1,64 +1,98 @@
-# Profiling in Go with `pprof`
+# Code Challenges in Go 🚀
 
-This guide explains how to use Go’s built-in profiler (`net/http/pprof`) to inspect and analyze your application behavior during runtime.
-
----
-
-## 📊 What can you profile?
-- CPU usage
-- Heap memory allocations
-- Number of goroutines
-- Blocking operations
-- Mutex contention
+## 📖 Description
+This project brings together multiple technical challenges implemented in **Go**, exposed through a REST API using the **Gin Gonic** framework. Each challenge addresses a common problem and solves it using idiomatic, safe, and efficient Go code. The project is designed to be easily extensible and testable.
 
 ---
 
-## ⚙️ How to enable `pprof`
-Add the following to your `main.go`:
+## 💡 What does this project include?
 
-```go
-import _ "net/http/pprof"
-go http.ListenAndServe(":6060", nil)
-```
-> ⚠️ Only use in development or behind secure access in production.
+1. **Stack Operations**: A concurrency-safe stack implementation for pushing and popping elements.
+2. **Roman to Integer Conversion**: Converts Roman numerals to their decimal representation.
+3. **Example API**: A basic endpoint that returns a simple greeting.
+4. **Sum of Multiples**: Calculates the sum of multiples of 3 or 5 below a given limit.
+5. **Pair Sum Count**: Counts how many pairs in an array sum to a target value.
+6. **Anagram Check**: Verifies whether two words are anagrams.
+7. **Shortest Path in Matrix**: Placeholder for pathfinding in a 2D matrix.
+8. **Unique and Duplicate Identifier**: Separates unique and duplicate values in a list.
+9. **Concurrency Simulation**: Runs concurrent tasks using goroutines and `sync.WaitGroup`.
+10. **URL Response Times**: Measures the latency of multiple URLs using `libcurl`.
+11. **Character Counter**: Returns the frequency of each character in a string.
+12. **Fork Reader** (`POST /fork-reader`):
+    Splits a stream of text alternately byte by byte into two separate outputs (`w1` and `w2`).
+13. **Double Server** (`POST /double-server`):
+    Accepts an array of numbers, sends them to an internal server via channels, and returns each number doubled.
+14. **Pair Sum (Two-pointer)** (`POST /pair-sum`):
+    Given two sorted arrays and a target sum, counts how many cross-pairs add up to the target.
+15. **Channel Pair Sum** (`POST /channel-pair-sum`):
+    Similar to above but uses channels to simulate input and process matching pairs concurrently.
+16. **Browser Navigator** (`POST /browser-navigator`):
+    Simulates browser navigation using commands like `hopTo`, `backtrack`, and `leapForward`, maintaining back and forward history.
 
 ---
 
-## 🚀 How to profile
+## 📦 Bruno API Client Collection
 
-1. **Run the app with pprof enabled**:
+A `collections/` folder includes `.bru` files compatible with [Bruno API Client](https://www.usebruno.com/) for testing all endpoints.
+
+To use:
+1. Open Bruno.
+2. Import the `collections/` folder.
+3. Run the requests directly.
+
+---
+
+## 🔬 Profiling Support (`pprof`)
+
+This project supports Go profiling via `net/http/pprof`.
+
+You can profile:
+- CPU
+- Memory
+- Goroutines
+- Locks (mutex contention)
+
+### Quick usage:
 ```bash
-make run
+make run        # start API with pprof at :6060
+make profile    # capture 30-second CPU profile
+make goroutines # list active goroutines
 ```
 
-2. **Capture a CPU profile (30 seconds)**:
-```bash
-make profile
-```
-
-3. **Check active goroutines**:
-```bash
-make goroutines
-```
-
-4. **Analyze the captured profile**:
-```bash
-go tool pprof cpu.prof
-(pprof) top
-(pprof) web    # requires graphviz
-```
+More details in [`/profiling/README.md`](./profiling/README.md)
 
 ---
 
-## 📁 Related files
-- `Makefile` – contains profiling automation commands
-- `pprof` – native Go profiling endpoints
+## 🛠️ Prerequisites
+
+1. **Go**:
+    - Download and install Go from [https://go.dev/dl/](https://go.dev/dl/).
+    - Verify the installation:
+      ```bash
+      go version
+      ```
+
+2. **Gin Gonic**:
+    - The framework will be installed automatically via `go mod tidy`.
 
 ---
 
-## 🔧 Optional Tools
-- [Pyroscope](https://pyroscope.io/)
-- [Grafana Cloud Profiles](https://grafana.com/oss/profiles/)
-- [Google Cloud Profiler](https://cloud.google.com/profiler)
+## 🚀 How to Run This Project
 
----
+1. **Clone this repository**:
+   ```bash
+   git clone https://github.com/giojimen3z/test-for-job.git
+   cd test-for-job
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   go mod tidy
+   ```
+
+3. **Run the server**:
+   ```bash
+   go run main.go
+   ```
+
+4. **Access the API at:** `http://localhost:8080`
