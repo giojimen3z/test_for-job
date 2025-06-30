@@ -1,0 +1,505 @@
+basePath: /
+definitions:
+  challenges.ConnCacheRequest:
+    properties:
+      sequence:
+        items:
+          type: string
+        type: array
+    type: object
+  challenges.CountCharactersRequest:
+    properties:
+      text:
+        type: string
+    type: object
+  challenges.GridRequest:
+    properties:
+      grid:
+        items:
+          items:
+            type: integer
+          type: array
+        type: array
+    type: object
+  challenges.PairSumRequest:
+    properties:
+      numbers:
+        items:
+          type: integer
+        type: array
+      target:
+        type: integer
+    type: object
+  challenges.URLRequest:
+    properties:
+      urls:
+        items:
+          type: string
+        type: array
+    type: object
+  challenges.UniqueRequest:
+    properties:
+      numbers:
+        items:
+          type: integer
+        type: array
+    type: object
+  routes.ChannelPairSumRequest:
+    properties:
+      ascending:
+        items:
+          type: integer
+        type: array
+      descending:
+        items:
+          type: integer
+        type: array
+      target:
+        type: integer
+    type: object
+  routes.ChannelPairSumResponse:
+    properties:
+      pairs:
+        type: integer
+    type: object
+  routes.DoubleServerRequest:
+    properties:
+      numbers:
+        items:
+          type: integer
+        type: array
+    type: object
+  routes.ForkReaderRequest:
+    properties:
+      data:
+        type: string
+    type: object
+  routes.PairSumRequest:
+    properties:
+      ascending:
+        items:
+          type: integer
+        type: array
+      descending:
+        items:
+          type: integer
+        type: array
+      target:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a collection of code challenge endpoints written in Go using
+    Gin.
+  title: Golang Code Challenges API
+  version: "1.0"
+paths:
+  /api:
+    get:
+      description: Returns a basic greeting message.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+      summary: Example API endpoint
+      tags:
+      - Example
+  /browser-navigator:
+    post:
+      consumes:
+      - application/json
+      description: Simulates navigating through browser commands like hopTo, backtrack,
+        leapForward
+      parameters:
+      - description: List of navigation commands
+        in: body
+        name: input
+        required: true
+        schema:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: string
+            type: array
+      summary: Simulate browser navigation
+      tags:
+      - Navigation
+  /channel-pair-sum:
+    post:
+      consumes:
+      - application/json
+      description: Receives two arrays (ascending and descending), simulates input
+        via channels, and counts pairs that sum to a given target.
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/routes.ChannelPairSumRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.ChannelPairSumResponse'
+      summary: Count matching pairs from channels
+      tags:
+      - Array
+  /codereview:
+    get:
+      description: Returns code with pre-analyzed issues and suggestions for improvement.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+      summary: Static code review analysis
+      tags:
+      - Review
+  /concurrency_sim:
+    get:
+      description: Executes 5 concurrent tasks with staggered delays and returns their
+        completion messages.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+      summary: Simulate concurrent tasks
+      tags:
+      - Concurrency
+  /conncache_scaffold:
+    post:
+      consumes:
+      - application/json
+      description: Accepts a sequence of addresses, simulates cached connection reuse,
+        and validates correct behavior.
+      parameters:
+      - description: Sequence of connection addresses
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/challenges.ConnCacheRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+        "500":
+          description: Internal Server Error
+          schema:
+            type: objects
+      summary: Simulate and validate cached connections
+      tags:
+      - Cache
+  /count_characters:
+    post:
+      consumes:
+      - application/json
+      description: Returns the frequency of each character in the input string.
+      parameters:
+      - description: Input string
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/challenges.CountCharactersRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+      summary: Count character frequencies in a string
+      tags:
+      - Text
+  /double-server:
+    post:
+      consumes:
+      - application/json
+      description: Sends a list of integers to a background server via a channel and
+        returns each number multiplied by two.
+      parameters:
+      - description: List of numbers to double
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/routes.DoubleServerRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+      summary: Double numbers using an internal channel-based server
+      tags:
+      - Concurrency
+  /fork-reader:
+    post:
+      consumes:
+      - application/json
+      description: Reads a string and alternates each byte into two outputs (w1 and
+        w2).
+      parameters:
+      - description: Input stream data
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/routes.ForkReaderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+        "500":
+          description: Internal Server Error
+          schema:
+            type: objects
+      summary: Fork a stream alternately into two outputs
+      tags:
+      - Stream
+  /get_time_for_urls:
+    post:
+      consumes:
+      - application/json
+      description: Sends HTTP requests to a list of URLs and returns the response
+        time in seconds for each.
+      parameters:
+      - description: List of URLs
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/challenges.URLRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+      summary: Measure response time for multiple URLs
+      tags:
+      - Network
+  /is_anagram/{word1}/{word2}:
+    get:
+      description: Determines whether two words are anagrams, ignoring case.
+      parameters:
+      - description: First word
+        in: path
+        name: word1
+        required: true
+        type: string
+      - description: Second word
+        in: path
+        name: word2
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+      summary: Check if two words are anagrams
+      tags:
+      - Text
+  /multiples_sum/{limit}:
+    get:
+      description: Returns the sum of all numbers below the given limit that are divisible
+        by 3 or 5.
+      parameters:
+      - description: Upper limit (exclusive)
+        in: path
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+      summary: Sum multiples of 3 or 5 below a limit
+      tags:
+      - Math
+  /pair-sum:
+    post:
+      consumes:
+      - application/json
+      description: Given two arrays (one ascending, one descending) and a target value,
+        returns the number of pairs (one from each array) that sum to the target.
+      parameters:
+      - description: Two arrays and target value
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/routes.PairSumRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+      summary: Count valid pairs that sum to target
+      tags:
+      - Array
+  /pair_sum_count:
+    post:
+      consumes:
+      - application/json
+      description: Returns how many unique pairs in an array sum up to a given target
+        value.
+      parameters:
+      - description: Array of numbers and target value
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/challenges.PairSumRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+      summary: Count pairs that sum to a target
+      tags:
+      - Array
+  /shortest_path:
+    post:
+      consumes:
+      - application/json
+      description: Accepts a grid and returns a fake response for the shortest path.
+      parameters:
+      - description: 2D grid structure
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/challenges.GridRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Compute the shortest path in a grid (placeholder)
+      tags:
+      - Matrix
+  /stack:
+    get:
+      description: Pushes and pops elements from a stack, returning the results.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+      summary: Demonstrate stack operations
+      tags:
+      - Data Structures
+  /unique_or_duplicates:
+    post:
+      consumes:
+      - application/json
+      description: Receives a list of integers and separates them into unique and
+        duplicate values.
+      parameters:
+      - description: List of integers
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/challenges.UniqueRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: objects
+        "400":
+          description: Bad Request
+          schema:
+            type: objects
+      summary: Identify unique and duplicate numbers
+      tags:
+      - Arrays
+swagger: "2.0"

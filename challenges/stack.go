@@ -28,7 +28,13 @@ func (s *Stack) Pop() (int, bool) {
 	return value, true
 }
 
-// Handler para el endpoint de Stack
+// StackEndpoint godoc
+// @Summary Demonstrate stack operations
+// @Description Pushes and pops elements from a stack, returning the results.
+// @Tags Data Structures
+// @Produce json
+// @Success 200 {objects} map[string]interface{}
+// @Router /stack [get]
 func StackEndpoint(c *gin.Context) {
 	stack := &Stack{data: []int{}}
 	stack.Push(10)

@@ -1,0 +1,758 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a collection of code challenge endpoints written in Go using Gin.",
+        "title": "Golang Code Challenges API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/api": {
+            "get": {
+                "description": "Returns a basic greeting message.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Example"
+                ],
+                "summary": "Example API endpoint",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/browser-navigator": {
+            "post": {
+                "description": "Simulates navigating through browser commands like hopTo, backtrack, leapForward",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Navigation"
+                ],
+                "summary": "Simulate browser navigation",
+                "parameters": [
+                    {
+                        "description": "List of navigation commands",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/channel-pair-sum": {
+            "post": {
+                "description": "Receives two arrays (ascending and descending), simulates input via channels, and counts pairs that sum to a given target.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Array"
+                ],
+                "summary": "Count matching pairs from channels",
+                "parameters": [
+                    {
+                        "description": "Request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.ChannelPairSumRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.ChannelPairSumResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/codereview": {
+            "get": {
+                "description": "Returns code with pre-analyzed issues and suggestions for improvement.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Review"
+                ],
+                "summary": "Static code review analysis",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/concurrency_sim": {
+            "get": {
+                "description": "Executes 5 concurrent tasks with staggered delays and returns their completion messages.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Concurrency"
+                ],
+                "summary": "Simulate concurrent tasks",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/conncache_scaffold": {
+            "post": {
+                "description": "Accepts a sequence of addresses, simulates cached connection reuse, and validates correct behavior.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cache"
+                ],
+                "summary": "Simulate and validate cached connections",
+                "parameters": [
+                    {
+                        "description": "Sequence of connection addresses",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/challenges.ConnCacheRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/count_characters": {
+            "post": {
+                "description": "Returns the frequency of each character in the input string.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Text"
+                ],
+                "summary": "Count character frequencies in a string",
+                "parameters": [
+                    {
+                        "description": "Input string",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/challenges.CountCharactersRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/double-server": {
+            "post": {
+                "description": "Sends a list of integers to a background server via a channel and returns each number multiplied by two.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Concurrency"
+                ],
+                "summary": "Double numbers using an internal channel-based server",
+                "parameters": [
+                    {
+                        "description": "List of numbers to double",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.DoubleServerRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/fork-reader": {
+            "post": {
+                "description": "Reads a string and alternates each byte into two outputs (w1 and w2).",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Stream"
+                ],
+                "summary": "Fork a stream alternately into two outputs",
+                "parameters": [
+                    {
+                        "description": "Input stream data",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.ForkReaderRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/get_time_for_urls": {
+            "post": {
+                "description": "Sends HTTP requests to a list of URLs and returns the response time in seconds for each.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Network"
+                ],
+                "summary": "Measure response time for multiple URLs",
+                "parameters": [
+                    {
+                        "description": "List of URLs",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/challenges.URLRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/is_anagram/{word1}/{word2}": {
+            "get": {
+                "description": "Determines whether two words are anagrams, ignoring case.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Text"
+                ],
+                "summary": "Check if two words are anagrams",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "First word",
+                        "name": "word1",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Second word",
+                        "name": "word2",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/multiples_sum/{limit}": {
+            "get": {
+                "description": "Returns the sum of all numbers below the given limit that are divisible by 3 or 5.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Math"
+                ],
+                "summary": "Sum multiples of 3 or 5 below a limit",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Upper limit (exclusive)",
+                        "name": "limit",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/pair-sum": {
+            "post": {
+                "description": "Given two arrays (one ascending, one descending) and a target value, returns the number of pairs (one from each array) that sum to the target.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Array"
+                ],
+                "summary": "Count valid pairs that sum to target",
+                "parameters": [
+                    {
+                        "description": "Two arrays and target value",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.PairSumRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/pair_sum_count": {
+            "post": {
+                "description": "Returns how many unique pairs in an array sum up to a given target value.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Array"
+                ],
+                "summary": "Count pairs that sum to a target",
+                "parameters": [
+                    {
+                        "description": "Array of numbers and target value",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/challenges.PairSumRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/shortest_path": {
+            "post": {
+                "description": "Accepts a grid and returns a fake response for the shortest path.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Matrix"
+                ],
+                "summary": "Compute the shortest path in a grid (placeholder)",
+                "parameters": [
+                    {
+                        "description": "2D grid structure",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/challenges.GridRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stack": {
+            "get": {
+                "description": "Pushes and pops elements from a stack, returning the results.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Data Structures"
+                ],
+                "summary": "Demonstrate stack operations",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        },
+        "/unique_or_duplicates": {
+            "post": {
+                "description": "Receives a list of integers and separates them into unique and duplicate values.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Arrays"
+                ],
+                "summary": "Identify unique and duplicate numbers",
+                "parameters": [
+                    {
+                        "description": "List of integers",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/challenges.UniqueRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "objects"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "challenges.ConnCacheRequest": {
+            "type": "object",
+            "properties": {
+                "sequence": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "challenges.CountCharactersRequest": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string"
+                }
+            }
+        },
+        "challenges.GridRequest": {
+            "type": "object",
+            "properties": {
+                "grid": {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
+        "challenges.PairSumRequest": {
+            "type": "object",
+            "properties": {
+                "numbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "target": {
+                    "type": "integer"
+                }
+            }
+        },
+        "challenges.URLRequest": {
+            "type": "object",
+            "properties": {
+                "urls": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "challenges.UniqueRequest": {
+            "type": "object",
+            "properties": {
+                "numbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "routes.ChannelPairSumRequest": {
+            "type": "object",
+            "properties": {
+                "ascending": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "descending": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "target": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.ChannelPairSumResponse": {
+            "type": "object",
+            "properties": {
+                "pairs": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.DoubleServerRequest": {
+            "type": "object",
+            "properties": {
+                "numbers": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "routes.ForkReaderRequest": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.PairSumRequest": {
+            "type": "object",
+            "properties": {
+                "ascending": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "descending": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "target": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

@@ -42,6 +42,21 @@ To use:
 
 ---
 
+## 🧾 Swagger / OpenAPI Documentation
+
+Swagger documentation is available and auto-generated using [Swaggo](https://github.com/swaggo/swag).
+
+To view it:
+1. Run the server.
+2. Navigate to `http://localhost:8080/swagger/index.html`
+
+To regenerate the Swagger docs:
+```bash
+swag init --parseDependency --parseInternal
+```
+
+---
+
 ## 🔬 Profiling Support (`pprof`)
 
 This project supports Go profiling via `net/http/pprof`.

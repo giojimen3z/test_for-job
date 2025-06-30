@@ -21,7 +21,16 @@ func romanToInt(roman string) int {
 	return result
 }
 
-// Handler para el endpoint de Romanos a Enteros
+// RomanToIntEndpoint godoc
+// @Summary Convert Roman numeral to integer
+// @Description Converts a Roman numeral string to its integer representation.
+// @Tags Conversion
+// @Produce json
+// @Param roman path string true "Roman numeral (e.g., X, IX, MCMXCIV)"
+// @Success 200 {objects} map[string]interface{}
+// @Failure 400 {objects} map[string]string
+// @Router /roman_to_int/{roman} [get]
+
 func RomanToIntEndpoint(c *gin.Context) {
 	roman := c.Param("roman")
 	integer := romanToInt(roman)

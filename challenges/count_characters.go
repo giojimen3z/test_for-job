@@ -11,6 +11,16 @@ type CountCharactersRequest struct {
 	Text string `json:"text"`
 }
 
+// CountCharactersEndpoint godoc
+// @Summary Count character frequencies in a string
+// @Description Returns the frequency of each character in the input string.
+// @Tags Text
+// @Accept json
+// @Produce json
+// @Param input body CountCharactersRequest true "Input string"
+// @Success 200 {objects} map[string]map[string]int
+// @Failure 400 {objects} map[string]string
+// @Router /count_characters [post]
 func CountCharactersEndpoint(c *gin.Context) {
 	var req CountCharactersRequest
 	if err := c.ShouldBindJSON(&req); err != nil {

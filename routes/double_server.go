@@ -16,6 +16,16 @@ type DoubleServerResponse struct {
 	Results []int32 `json:"results"`
 }
 
+// DoubleServerHandler godoc
+// @Summary Double numbers using an internal channel-based server
+// @Description Sends a list of integers to a background server via a channel and returns each number multiplied by two.
+// @Tags Concurrency
+// @Accept json
+// @Produce json
+// @Param input body DoubleServerRequest true "List of numbers to double"
+// @Success 200 {objects} DoubleServerResponse
+// @Failure 400 {objects} map[string]string
+// @Router /double-server [post]
 func DoubleServerHandler(c *gin.Context) {
 	var req DoubleServerRequest
 	if err := c.ShouldBindJSON(&req); err != nil {

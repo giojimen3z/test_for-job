@@ -1,30 +1,26 @@
 package main
 
 import (
-	"log"
-	"net/http"
 	_ "net/http/pprof"
-	"os"
+
+	_ "test_for-job/docs"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"test_for-job/challenges"
 	"test_for-job/routes"
 )
 
-func init() {
-	go func() {
-		log.Println("pprof listening on :6060")
-		if err := http.ListenAndServe(":6060", nil); err != nil {
-			log.Println("pprof server failed:", err)
-			os.Exit(1)
-		}
-	}()
-}
-
+// @title Golang Code Challenges API
+// @version 1.0
+// @description This is a collection of code challenge endpoints written in Go using Gin.
+// @host localhost:8080
+// @BasePath /
 func main() {
 	router := gin.Default()
 
-	// --- Endpoints: Lógica en challenges ---
+	// --- Endpoints: Challenge logic ---
 	router.GET("/api", challenges.APIServerExampleEndpoint)
 	router.GET("/stack", challenges.StackEndpoint)
 	router.GET("/concurrency_sim", challenges.ConcurrencySimEndpoint)
@@ -40,16 +36,19 @@ func main() {
 	router.POST("/unique_or_duplicates", challenges.UniqueOrDuplicatesEndpoint)
 	router.POST("/conncache_scaffold", challenges.ConnCacheEndpoint)
 
-	// --- Endpoints: Lógica en routes ---
+	// --- Endpoints: Routes logic ---
 	router.POST("/fork-reader", routes.ForkReaderHandler)
 	router.POST("/double-server", routes.DoubleServerHandler)
 	router.POST("/pair-sum", routes.PairSumHandler)
 	router.POST("/browser-navigator", routes.BrowserNavigatorHandler)
 	router.POST("/channel-pair-sum", routes.ChannelPairSumHandler)
 
-	// --- Inicialización de servidores internos ---
+	// --- Internal server initialization ---
 	challenges.StartDoubleServer()
 
-	// --- Iniciar servidor HTTP ---
-	router.Run(":8080") // Escucha en http://localhost:8080
+	// --- Swagger UI route ---
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	// --- Start the HTTP server ---
+	router.Run(":8080")
 }

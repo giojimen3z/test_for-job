@@ -17,6 +17,17 @@ type ForkReaderResponse struct {
 	W2 string `json:"w2"`
 }
 
+// ForkReaderHandler godoc
+// @Summary Fork a stream alternately into two outputs
+// @Description Reads a string and alternates each byte into two outputs (w1 and w2).
+// @Tags Stream
+// @Accept json
+// @Produce json
+// @Param input body ForkReaderRequest true "Input stream data"
+// @Success 200 {objects} ForkReaderResponse
+// @Failure 400 {objects} map[string]string
+// @Failure 500 {objects} map[string]string
+// @Router /fork-reader [post]
 func ForkReaderHandler(c *gin.Context) {
 	var req ForkReaderRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
