@@ -12,6 +12,16 @@ type URLRequest struct {
 	URLs []string `json:"urls"`
 }
 
+// GetTimeForUrlsEndpoint godoc
+// @Summary Measure response time for multiple URLs
+// @Description Sends HTTP requests to a list of URLs and returns the response time in seconds for each.
+// @Tags Network
+// @Accept json
+// @Produce json
+// @Param input body URLRequest true "List of URLs"
+// @Success 200 {objects} map[string]float64
+// @Failure 400 {objects} map[string]string
+// @Router /get_time_for_urls [post]
 func GetTimeForUrlsEndpoint(c *gin.Context) {
 	var req URLRequest
 	if err := c.ShouldBindJSON(&req); err != nil || len(req.URLs) == 0 {

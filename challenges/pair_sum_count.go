@@ -11,6 +11,16 @@ type PairSumRequest struct {
 	Target  int   `json:"target"`
 }
 
+// PairSumCountEndpoint godoc
+// @Summary Count pairs that sum to a target
+// @Description Returns how many unique pairs in an array sum up to a given target value.
+// @Tags Array
+// @Accept json
+// @Produce json
+// @Param input body PairSumRequest true "Array of numbers and target value"
+// @Success 200 {objects} map[string]int
+// @Failure 400 {objects} map[string]string
+// @Router /pair_sum_count [post]
 func PairSumCountEndpoint(c *gin.Context) {
 	var req PairSumRequest
 	if err := c.ShouldBindJSON(&req); err != nil {

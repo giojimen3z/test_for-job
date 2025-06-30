@@ -10,6 +10,16 @@ type UniqueRequest struct {
 	Numbers []int `json:"numbers"`
 }
 
+// UniqueOrDuplicatesEndpoint godoc
+// @Summary Identify unique and duplicate numbers
+// @Description Receives a list of integers and separates them into unique and duplicate values.
+// @Tags Arrays
+// @Accept json
+// @Produce json
+// @Param input body UniqueRequest true "List of integers"
+// @Success 200 {objects} map[string]interface{}
+// @Failure 400 {objects} map[string]string
+// @Router /unique_or_duplicates [post]
 func UniqueOrDuplicatesEndpoint(c *gin.Context) {
 	var req UniqueRequest
 	if err := c.ShouldBindJSON(&req); err != nil {

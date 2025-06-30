@@ -9,6 +9,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// ConcurrencySimEndpoint godoc
+// @Summary Simulate concurrent tasks
+// @Description Executes 5 concurrent tasks with staggered delays and returns their completion messages.
+// @Tags Concurrency
+// @Produce json
+// @Success 200 {objects} map[string][]string
+// @Router /concurrency_sim [get]
 func ConcurrencySimEndpoint(c *gin.Context) {
 	var wg sync.WaitGroup
 	results := make([]string, 5)

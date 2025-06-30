@@ -5,10 +5,11 @@ type In struct {
 	Resp   chan int32
 }
 
-// Canal global
+// Global channel used for communication with the background server
 var ServerChan = make(chan In, 5000)
 
-// Inicializa el servidor en segundo plano
+// StartDoubleServer launches a background goroutine that listens on ServerChan.
+// For each incoming request, it doubles the input number and sends it back through the response channel.
 func StartDoubleServer() {
 	go func() {
 		for req := range ServerChan {

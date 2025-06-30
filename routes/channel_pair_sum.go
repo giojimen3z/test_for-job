@@ -18,6 +18,15 @@ type ChannelPairSumResponse struct {
 	Pairs uint32 `json:"pairs"`
 }
 
+// ChannelPairSumEndpoint godoc
+// @Summary Count matching pairs from channels
+// @Description Receives two arrays (ascending and descending), simulates input via channels, and counts pairs that sum to a given target.
+// @Tags Array
+// @Accept json
+// @Produce json
+// @Success 200 {object} ChannelPairSumResponse
+// @Param request body ChannelPairSumRequest true "Request body"
+// @Router /channel-pair-sum [post]
 func ChannelPairSumHandler(c *gin.Context) {
 	var req ChannelPairSumRequest
 	if err := c.ShouldBindJSON(&req); err != nil {

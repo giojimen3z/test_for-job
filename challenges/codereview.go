@@ -79,6 +79,13 @@ func main() {
 	}
 }`
 
+// CodeReviewEndpoint godoc
+// @Summary Static code review analysis
+// @Description Returns code with pre-analyzed issues and suggestions for improvement.
+// @Tags Review
+// @Produce json
+// @Success 200 {objects} map[string]string
+// @Router /codereview [get]
 func CodeReviewEndpoint(c *gin.Context) {
 	issues := []string{
 		"🔴 Modifica slices mientras los recorres en `retrieveAll`: esto puede causar errores inesperados.",

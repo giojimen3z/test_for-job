@@ -64,6 +64,17 @@ type ConnCacheResult struct {
 	Message    string `json:"message"`
 }
 
+// ConnCacheEndpoint godoc
+// @Summary Simulate and validate cached connections
+// @Description Accepts a sequence of addresses, simulates cached connection reuse, and validates correct behavior.
+// @Tags Cache
+// @Accept json
+// @Produce json
+// @Param input body ConnCacheRequest true "Sequence of connection addresses"
+// @Success 200 {objects} ConnCacheResult
+// @Failure 400 {objects} map[string]string
+// @Failure 500 {objects} map[string]string
+// @Router /conncache_scaffold [post]
 func ConnCacheEndpoint(c *gin.Context) {
 	var req ConnCacheRequest
 	if err := c.ShouldBindJSON(&req); err != nil || len(req.Sequence) < 2 {
