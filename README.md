@@ -1,98 +1,98 @@
 # Code Challenges in Go 🚀
 
-## 📖 Descripción
-Este proyecto reúne múltiples desafíos técnicos implementados en **Go**, encapsulados en endpoints de una API REST utilizando el framework **Gin Gonic**. Cada desafío aborda problemas técnicos comunes y los resuelve con prácticas eficientes y seguras. Además, el proyecto está diseñado para ser fácilmente extensible y probado.
+## 📖 Description
+This project brings together multiple technical challenges implemented in **Go**, exposed through a REST API using the **Gin Gonic** framework. Each challenge addresses a common problem and solves it using idiomatic, safe, and efficient Go code. The project is designed to be easily extensible and testable.
 
 ---
 
-## 💡 ¿Qué incluye este proyecto?
+## 💡 What does this project include?
 
-1. **Operaciones de Pila (Stack)**: Implementa una pila con concurrencia segura para agregar y eliminar elementos.
-2. **Conversión de Números Romanos a Enteros**: Convierte números romanos a su representación decimal.
-3. **API de Ejemplo**: Un endpoint básico que devuelve un mensaje sencillo.
-4. **Suma de Múltiplos**: Calcula la suma de múltiplos de 3 o 5 por debajo de un límite dado.
-5. **Conteo de Pares**: Cuenta cuántos pares en un arreglo suman un valor objetivo.
-6. **Verificación de Anagramas**: Verifica si dos palabras son anagramas.
-7. **Ruta más Corta (Matriz)**: Devuelve un placeholder para procesamiento de rutas en matrices.
-8. **Identificación de Únicos y Duplicados**: Separa números únicos y duplicados en una lista.
-9. **Simulación de Concurrencia**: Ejecuta tareas concurrentes usando goroutines y `sync.WaitGroup`.
-10. **Tiempo de Respuesta de URLs**: Mide el tiempo de respuesta de múltiples URLs usando `libcurl`.
-11. **Conteo de Caracteres**: Devuelve la frecuencia de cada carácter en una cadena.
-12. **Fork Reader** (`POST /fork-reader`):  
-    Divide un flujo de texto alternando byte por byte en dos salidas separadas (`w1` y `w2`).
-13. **Double Server** (`POST /double-server`):  
-    Recibe un arreglo de números, los envía a un servidor interno vía canales y responde con cada número multiplicado por dos.
-14. **Pair Sum (Two-pointer)** (`POST /pair-sum`):  
-    Dados dos arreglos (ascendente y descendente) y un número objetivo, cuenta cuántos pares (uno de cada arreglo) suman exactamente dicho valor.
-15. **Channel Pair Sum** (`POST /channel-pair-sum`):  
-    Similar al anterior pero la entrada es simulada mediante canales. Usa goroutines y sincronización para procesar pares que suman un objetivo.
-16. **Browser Navigator** (`POST /browser-navigator`):  
-    Simula navegación con comandos como `hopTo`, `backtrack`, `leapForward`, manteniendo historial hacia atrás y hacia adelante.
-
----
-
-## 📦 Colección para Bruno API Client
-
-Incluye una carpeta `collections/` con archivos `.bru` compatibles con [Bruno API Client](https://www.usebruno.com/), permitiendo probar todos los endpoints fácilmente.
-
-Para usarla:
-1. Abre Bruno.
-2. Importa la carpeta `collections/`.
-3. Ejecuta cada request directamente desde Bruno.
+1. **Stack Operations**: A concurrency-safe stack implementation for pushing and popping elements.
+2. **Roman to Integer Conversion**: Converts Roman numerals to their decimal representation.
+3. **Example API**: A basic endpoint that returns a simple greeting.
+4. **Sum of Multiples**: Calculates the sum of multiples of 3 or 5 below a given limit.
+5. **Pair Sum Count**: Counts how many pairs in an array sum to a target value.
+6. **Anagram Check**: Verifies whether two words are anagrams.
+7. **Shortest Path in Matrix**: Placeholder for pathfinding in a 2D matrix.
+8. **Unique and Duplicate Identifier**: Separates unique and duplicate values in a list.
+9. **Concurrency Simulation**: Runs concurrent tasks using goroutines and `sync.WaitGroup`.
+10. **URL Response Times**: Measures the latency of multiple URLs using `libcurl`.
+11. **Character Counter**: Returns the frequency of each character in a string.
+12. **Fork Reader** (`POST /fork-reader`):
+    Splits a stream of text alternately byte by byte into two separate outputs (`w1` and `w2`).
+13. **Double Server** (`POST /double-server`):
+    Accepts an array of numbers, sends them to an internal server via channels, and returns each number doubled.
+14. **Pair Sum (Two-pointer)** (`POST /pair-sum`):
+    Given two sorted arrays and a target sum, counts how many cross-pairs add up to the target.
+15. **Channel Pair Sum** (`POST /channel-pair-sum`):
+    Similar to above but uses channels to simulate input and process matching pairs concurrently.
+16. **Browser Navigator** (`POST /browser-navigator`):
+    Simulates browser navigation using commands like `hopTo`, `backtrack`, and `leapForward`, maintaining back and forward history.
 
 ---
 
-## 🔬 Soporte para profiling (`pprof`)
+## 📦 Bruno API Client Collection
 
-Este proyecto soporta profiling en Go usando `net/http/pprof`.
+A `collections/` folder includes `.bru` files compatible with [Bruno API Client](https://www.usebruno.com/) for testing all endpoints.
 
-Puedes medir:
+To use:
+1. Open Bruno.
+2. Import the `collections/` folder.
+3. Run the requests directly.
+
+---
+
+## 🔬 Profiling Support (`pprof`)
+
+This project supports Go profiling via `net/http/pprof`.
+
+You can profile:
 - CPU
-- Memoria
+- Memory
 - Goroutines
 - Locks (mutex contention)
 
-### Uso rápido:
+### Quick usage:
 ```bash
-make run        # inicia la API con pprof en :6060
-make profile    # captura un perfil de CPU de 30 segundos
-make goroutines # lista goroutines activas
+make run        # start API with pprof at :6060
+make profile    # capture 30-second CPU profile
+make goroutines # list active goroutines
 ```
 
-Más detalles en [`/profiling/README.md`](./profiling/README.md)
+More details in [`/profiling/README.md`](./profiling/README.md)
 
 ---
 
-## 🛠️ Requisitos Previos
+## 🛠️ Prerequisites
 
 1. **Go**:
-    - Descarga e instala Go desde [https://go.dev/dl/](https://go.dev/dl/).
-    - Verifica la instalación:
+    - Download and install Go from [https://go.dev/dl/](https://go.dev/dl/).
+    - Verify the installation:
       ```bash
       go version
       ```
 
 2. **Gin Gonic**:
-    - El framework se instalará automáticamente al ejecutar el proyecto gracias a `go mod tidy`.
+    - The framework will be installed automatically via `go mod tidy`.
 
 ---
 
-## 🚀 Cómo Ejecutar el Proyecto
+## 🚀 How to Run This Project
 
-1. **Clona este repositorio**:
+1. **Clone this repository**:
    ```bash
    git clone https://github.com/giojimen3z/test-for-job.git
    cd test-for-job
    ```
 
-2. **Instala dependencias**:
+2. **Install dependencies**:
    ```bash
    go mod tidy
    ```
 
-3. **Ejecuta el servidor**:
+3. **Run the server**:
    ```bash
    go run main.go
    ```
 
-4. **Accede a la API en:** `http://localhost:8080`
+4. **Access the API at:** `http://localhost:8080`
