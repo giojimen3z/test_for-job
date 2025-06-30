@@ -1,10 +1,25 @@
 package main
 
 import (
+	"log"
+	"net/http"
+	_ "net/http/pprof"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"test_for-job/challenges"
 	"test_for-job/routes"
 )
+
+func init() {
+	go func() {
+		log.Println("pprof listening on :6060")
+		if err := http.ListenAndServe(":6060", nil); err != nil {
+			log.Println("pprof server failed:", err)
+			os.Exit(1)
+		}
+	}()
+}
 
 func main() {
 	router := gin.Default()

@@ -18,23 +18,14 @@ Este proyecto reúne múltiples desafíos técnicos implementados en **Go**, enc
 9. **Simulación de Concurrencia**: Ejecuta tareas concurrentes usando goroutines y `sync.WaitGroup`.
 10. **Tiempo de Respuesta de URLs**: Mide el tiempo de respuesta de múltiples URLs usando `libcurl`.
 11. **Conteo de Caracteres**: Devuelve la frecuencia de cada carácter en una cadena.
-
----
-
-## 🧪 Nuevos Retos Agregados
-
 12. **Fork Reader** (`POST /fork-reader`):  
     Divide un flujo de texto alternando byte por byte en dos salidas separadas (`w1` y `w2`).
-
 13. **Double Server** (`POST /double-server`):  
     Recibe un arreglo de números, los envía a un servidor interno vía canales y responde con cada número multiplicado por dos.
-
 14. **Pair Sum (Two-pointer)** (`POST /pair-sum`):  
     Dados dos arreglos (ascendente y descendente) y un número objetivo, cuenta cuántos pares (uno de cada arreglo) suman exactamente dicho valor.
-
 15. **Channel Pair Sum** (`POST /channel-pair-sum`):  
     Similar al anterior pero la entrada es simulada mediante canales. Usa goroutines y sincronización para procesar pares que suman un objetivo.
-
 16. **Browser Navigator** (`POST /browser-navigator`):  
     Simula navegación con comandos como `hopTo`, `backtrack`, `leapForward`, manteniendo historial hacia atrás y hacia adelante.
 
@@ -51,17 +42,38 @@ Para usarla:
 
 ---
 
+## 🔬 Soporte para profiling (`pprof`)
+
+Este proyecto soporta profiling en Go usando `net/http/pprof`.
+
+Puedes medir:
+- CPU
+- Memoria
+- Goroutines
+- Locks (mutex contention)
+
+### Uso rápido:
+```bash
+make run        # inicia la API con pprof en :6060
+make profile    # captura un perfil de CPU de 30 segundos
+make goroutines # lista goroutines activas
+```
+
+Más detalles en [`/profiling/README.md`](./profiling/README.md)
+
+---
+
 ## 🛠️ Requisitos Previos
 
 1. **Go**:
-   - Descarga e instala Go desde [https://go.dev/dl/](https://go.dev/dl/).
-   - Verifica la instalación:
-     ```bash
-     go version
-     ```
+    - Descarga e instala Go desde [https://go.dev/dl/](https://go.dev/dl/).
+    - Verifica la instalación:
+      ```bash
+      go version
+      ```
 
 2. **Gin Gonic**:
-   - El framework se instalará automáticamente al ejecutar el proyecto gracias a `go mod tidy`.
+    - El framework se instalará automáticamente al ejecutar el proyecto gracias a `go mod tidy`.
 
 ---
 
@@ -69,14 +81,18 @@ Para usarla:
 
 1. **Clona este repositorio**:
    ```bash
-   git clone https://github.com/giojimen3z/test_for-job.git
-   cd test_for-job
+   git clone https://github.com/giojimen3z/test-for-job.git
+   cd test-for-job
+   ```
 
 2. **Instala dependencias**:
    ```bash
-   go mod tidy 
-   
-3. **Ejecuta el servidor**: 
-    ```bash
+   go mod tidy
+   ```
+
+3. **Ejecuta el servidor**:
+   ```bash
    go run main.go
-4. **Accede a la API en http://localhost:8080**
+   ```
+
+4. **Accede a la API en:** `http://localhost:8080`
